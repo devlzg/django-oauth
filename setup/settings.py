@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-# import environ        Deu certo não isso aqui
-# env = environ.Env()
-# environ.Env.read_env()
+from dotenv import load_dotenv
+load_dotenv() # str(os.getenv('SECRET_KEY'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-93&5cl8$*og3ea3qbg(r8_vf(rsemzb%$(31*sai7vsujp3ue2'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -70,8 +69,8 @@ MIDDLEWARE = [
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'APP': {
-            'client_id': 'Ov23liGgMmQwgiYl7YKE',
-            'secret': '47251074279bd4d168565d5ae95949396acd63da',
+            'client_id': str(os.getenv('GITHUB_CLIENT_ID')),
+            'secret': str(os.getenv('GITHUB_CLIENT_SECRET')),
             'key': ''
         }
     }
@@ -153,4 +152,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/members'
+LOGIN_REDIRECT_URL = '/members' # Responsável por redirecionar toda vez que um login for realizado.
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+ACCOUNT_LOGOUT_ON_GET = True
