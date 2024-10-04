@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import environ
-env = environ.Env()
-environ.Env.read_env()
+# import environ        Deu certo não isso aqui
+# env = environ.Env()
+# environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -70,8 +70,8 @@ MIDDLEWARE = [
 SOCIALACCOUNT_PROVIDERS = {
     'github': {
         'APP': {
-            'client_id': env('GITHUB_CLIENT_ID'),
-            'secret': env('GITHUB_CLIENT_SECRET'),
+            'client_id': 'Ov23liGgMmQwgiYl7YKE',
+            'secret': '47251074279bd4d168565d5ae95949396acd63da',
             'key': ''
         }
     }
@@ -152,3 +152,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/members'
